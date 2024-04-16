@@ -2,7 +2,7 @@ package com.in28minutes.learnspringframework.game;
 
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class GameRunner {
     //MarioGame marioGame;
     private GamingConsole game;

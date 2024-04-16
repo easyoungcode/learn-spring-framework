@@ -12,14 +12,6 @@ import org.springframework.context.annotation.Configuration;
 // ComponentScan을 붙여주지 않았을 시 NoSuchBeanDefinitionException 발생
 public class App03GamingSpringBean {
 
-    // 인스턴스 생성
-    @Bean
-    public GameRunner gameRunner(GamingConsole game) {
-        System.out.println("Parameter : "+game);
-        var gameRunner = new GameRunner(game);
-        return gameRunner;
-    }
-
     public static void main(String[] args) {
 
         /** 게임과 GameRunner를 Spring Bean으로 실행
