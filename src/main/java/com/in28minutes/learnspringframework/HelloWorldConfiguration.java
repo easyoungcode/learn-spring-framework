@@ -1,7 +1,9 @@
 package com.in28minutes.learnspringframework;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /** record : JDK16부터 추가된 기능, record를 사용하면 생성자, getter, setter 걱정을 없애준다.
  *  getter, setter, 생성자를 입력하지 않아도 사용 가능 */
@@ -38,11 +40,26 @@ public class HelloWorldConfiguration {
         return new Person(name, age, address3);
     }
 
+    @Bean
+    @Primary    // 겹치는 이름의 Bean이 여러 개 일 때, 해당 Bean을 기본으로 사용하려고 할 때
+    // No qualifying bean of type 'com.in28minutes.learnspringframework.Adress'
+    // available : expected single matching bean but found2 : address2, address3
+    public Person person4Parameters(String name, int age, Address address) { // name, age, address2
+        return new Person(name, age, address);
+    }
+
+    @Bean
+    public Person person5PQualifier(String name, int age, @Qualifier("address3qualifier") Address address) { // name, age, address2
+        return new Person(name, age, address);
+    }
+
     @Bean(name = "address2")
+    @Primary
     public Address address() {
         return new Address("Baker Street", "London");
     }
     @Bean(name = "address3")
+    @Qualifier("address3qualifier")
     public Address address3() {
         return new Address("Montana", "Hyderaba");
     }

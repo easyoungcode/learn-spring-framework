@@ -5,6 +5,8 @@ import com.in28minutes.learnspringframework.game.PecmanGame;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class App02HelloWorldSpring {
 
@@ -29,7 +31,12 @@ public class App02HelloWorldSpring {
         /** Spring이 Bean을 관리하기 시작하면 Bean의 이름을 사용하거나 Bean의 유형을 사용해 가져올 수 있다 */
 //        System.out.println(context.getBean(Address.class));     // 이름이 아닌 클래스의 이름으로도 가능
 
-
+        System.out.println(context.getBean("person5PQualifier"));
+        /** 관리되는 모든 Bean 이름 출력 */
+        /*
+        Arrays.stream(context.getBeanDefinitionNames())
+                .forEach(System.out::println);
+        */
     }
 
 }
